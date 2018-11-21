@@ -7,10 +7,6 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       @user = User.create(username: "admin_user", email: "admin_user@alphablog.com", password: "admin1", admin: true)
   end
   
-  def sign_in_as(user,password)
-    post login_path, params: {session: {email: user.email, password: password}}
-  end
-
   test "should get categories index" do 
     get categories_path
     assert_response :success
