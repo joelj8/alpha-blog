@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :set_user, only: [:edit, :update, :show, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_admin, only: [:destroy]
   
@@ -72,6 +72,12 @@ class UsersController < ApplicationController
       flash[:danger] = "Only admin users can perform that action"
       redirect_to root_path
     end
+
+    if current_user == @user
+        flash[:danger] = "Admin user can't deleted himself"
+        redirect_to users_path
+    end
+    
   end
 
 end
