@@ -18,6 +18,10 @@
           </div>
         </div>
         
+        <% if article.categories.any? %>
+          <p> Categories <%= render article.categories %></p>
+        <% end %>
+        
         <% if logged_in? && (article.user == current_user || current_user.admin?) %>
            <div class="article-actions">
             <%= link_to "Edit this Articles", edit_article_path(article), class: "btn btn-xs btn-primary" %>
